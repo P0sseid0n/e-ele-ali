@@ -1,0 +1,15 @@
+services:
+  vasco:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - API_KEY=${API_KEY}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    command: python treinar.py
